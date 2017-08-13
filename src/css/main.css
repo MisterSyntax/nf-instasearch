@@ -1,0 +1,25 @@
+@import '/infoContainer.css';
+@import './searchResults.css';
+@import './searchBox.css';
+@import './colors.css';
+body{
+    color: var(--dark-grey);
+    font-weight: 700;
+    margin: 0;
+    background-color: var(--almost-white);
+    font-family: 'Raleway', sans-serif;
+    user-select: none;
+    -webkit-tap-highlight-color: none;
+}
+
+header{
+    background:linear-gradient(var(--primary),var(--primary-alt));
+    padding: 20px;
+    display: flex;
+    justify-content: center; 
+}
+main{
+    width: 100%;
+}
+
+

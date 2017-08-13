@@ -1,0 +1,12 @@
+@import './sizeConstants.css';
+#search-term{
+    font: 20px Raleway, sans-serif;
+    border-radius: 5px;
+    border: 0px;
+    padding: .5em;
+    width: 300px;
+    outline: none;
+    @media (--small-viewport){
+        width: 250px;
+    }
+}

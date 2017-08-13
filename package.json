@@ -1,0 +1,29 @@
+{
+  "name": "instaserch",
+  "version": "1.0.0",
+  "description": "Instasearch for NetFlix content",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./tests/*spec.js",
+    "start": "webpack-dev-server"
+  },
+  "author": "Andrew Syriala",
+  "license": "ISC",
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
+    "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "mocha": "^3.4.2",
+    "postcss": "^6.0.8",
+    "postcss-cli": "^4.1.0",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-import": "^10.0.0",
+    "postcss-loader": "^2.0.6",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.5.3",
+    "webpack-dev-server": "^2.7.1"
+  }
+}
