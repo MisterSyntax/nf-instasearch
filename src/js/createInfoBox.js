@@ -7,6 +7,10 @@
 const createInfoBox = function (data, imdbID, parent) {
     const div = document.createElement('div');
 
+    //close the loading container
+    const loadingBox = parent.querySelector('.info-loading-message');
+    loadingBox.parentNode.removeChild(loadingBox);
+
     //sets the new info box to either be closed or appear on whichever side has more room
     const className = document.querySelectorAll('.open').length > 0 ?
         'title-info-container closed'

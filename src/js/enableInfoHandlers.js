@@ -13,6 +13,11 @@ const enableInfoHandlers = function (node) {
 
     function createOpenInfoBox() {
         const titleInfoContainer = node.querySelector('.title-info-container');
+        //TODO:close any open info containers
+/*       document.querySelector('.open').forEach(curr=>{
+            curr.setAttribute('class', 'title-info-container closed')
+        });
+ */       
 
         //if we have already created the title info container show it, otherwise create it
         if (titleInfoContainer) {
@@ -39,6 +44,7 @@ const enableInfoHandlers = function (node) {
         }
     }
 
+    //Create handlers
     node.addEventListener('mouseenter', function () {
         if (window.innerWidth > 639) {
             createOpenInfoBox()
@@ -49,7 +55,6 @@ const enableInfoHandlers = function (node) {
             createOpenInfoBox();
         }
     });
-
     //Closes the container on mouseleave
     node.addEventListener('mouseleave', function () {
         if (window.innerWidth > 639) {

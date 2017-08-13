@@ -29,7 +29,9 @@ const instaSearch = function () {
                 //save last results for refresh
                 localStorage.history = JSON.stringify({ data: event.data });
 
-                suggestionBox.innerHTML = createSearchResults({ data: event.data }).innerHTML;
+                suggestionBox.innerHTML = createSearchResults({ data: event.data }) ? 
+                    createSearchResults({ data: event.data }).innerHTML
+                    : "";
             };
 
         }, 500);
