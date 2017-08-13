@@ -14,6 +14,12 @@ const createSearchResults = function(resultData){
         suggestionBox.appendChild(div);
         enableInfoHandlers(div);
     });
+    //clear the loadingBox
+    //TODO: refactor to having this return a promise...
+    const loadingBox = document.querySelector('.loading-results');
+    if(loadingBox){
+        loadingBox.parentNode.removeChild(loadingBox);
+    }
     
 }
 

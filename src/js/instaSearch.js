@@ -11,6 +11,14 @@ const instaSearch = function () {
     let currentWorker;
 
     search.addEventListener('input', (e) => {
+        //append loading overlay
+        if (!document.querySelector('.loading-results')) {
+            const loadingOverlay = document.createElement('div');
+            loadingOverlay.setAttribute('class', 'loading-container');
+            loadingOverlay.innerHTML = `<div class='loading-results'></div><div class='info-loading-message'>Loading...</div>`
+            suggestionBox.appendChild(loadingOverlay);
+        }
+
 
         //if there is a webworker currently requesting titles, terminate it
         if (currentWorker) {
@@ -30,6 +38,7 @@ const instaSearch = function () {
                 localStorage.history = JSON.stringify({ data: event.data });
                 createSearchResults({ data: event.data });
             };
+
 
         }, 500);
     });
