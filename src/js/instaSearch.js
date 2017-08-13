@@ -28,10 +28,7 @@ const instaSearch = function () {
             worker.onmessage = function (event) {
                 //save last results for refresh
                 localStorage.history = JSON.stringify({ data: event.data });
-
-                suggestionBox.innerHTML = createSearchResults({ data: event.data }) ? 
-                    createSearchResults({ data: event.data }).innerHTML
-                    : "";
+                createSearchResults({ data: event.data });
             };
 
         }, 500);

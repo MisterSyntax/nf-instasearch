@@ -14,6 +14,7 @@ const createSearchResults = function(resultData){
         suggestionBox.appendChild(div);
         enableInfoHandlers(div);
     });
+    
 }
 
 export default createSearchResults;

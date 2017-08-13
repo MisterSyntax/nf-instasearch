@@ -13,11 +13,15 @@ const enableInfoHandlers = function (node) {
 
     function createOpenInfoBox() {
         const titleInfoContainer = node.querySelector('.title-info-container');
-        //TODO:close any open info containers
-/*       document.querySelector('.open').forEach(curr=>{
-            curr.setAttribute('class', 'title-info-container closed')
-        });
- */       
+        //TODO: close any open info containers
+        const openInfoBoxes = document.querySelectorAll('.open');
+        if (openInfoBoxes) {
+            openInfoBoxes.forEach(curr => {
+                curr.setAttribute('class', 'title-info-container closed')
+            });
+        }
+
+
 
         //if we have already created the title info container show it, otherwise create it
         if (titleInfoContainer) {
@@ -32,7 +36,7 @@ const enableInfoHandlers = function (node) {
         //if we're creating a new container add a loading message, launch the worker, and when completed create container
         else {
             const div = document.createElement('div');
-            div.setAttribute('class','info-loading-message');
+            div.setAttribute('class', 'info-loading-message');
             div.innerHTML = "Loading Info...";
             node.appendChild(div);
             const worker = new Worker('./webWorkers/requestInfo.js');
