@@ -17,16 +17,13 @@ const enableInfoHandlers = function (node) {
         div.innerHTML = "Loading Info...";
         node.appendChild(div);
     }
-    function closeLoadingInfoBox(){
+    function closeLoadingInfoBox() {
         const loadingContainer = node.querySelector('.info-loading-message');
         if (loadingContainer) {
             loadingContainer.parentNode.removeChild(loadingContainer);
         }
     }
-
-    function createOpenInfoBox() {
-        const titleInfoContainer = node.querySelector('.title-info-container');
-        //TODO: close any open info containers
+    function closeOpenInfoContainers() {
         const openInfoBoxes = document.querySelectorAll('.open');
         if (openInfoBoxes) {
             openInfoBoxes.forEach(curr => {
@@ -34,11 +31,16 @@ const enableInfoHandlers = function (node) {
             });
         }
 
+    }
 
+    function createOpenInfoBox() {
+        const titleInfoContainer = node.querySelector('.title-info-container');
+
+        closeOpenInfoContainers();
 
         //if we have already created the title info container show it, otherwise create it
         if (titleInfoContainer) {
-            //make sure not placing info box off screen
+            //determine the box'x placement. mobile get center
             const className = (window.innerWidth < 639) ?
                 'title-info-container open center'
                 : (window.innerWidth - node.offsetLeft > 600) ?
@@ -46,18 +48,18 @@ const enableInfoHandlers = function (node) {
                     : 'title-info-container open left';
             titleInfoContainer.setAttribute('class', className);
         }
-        //if we're creating a new container add a loading message, launch the worker, and when completed create container
+        //else we're creating a new container add a loading message, launch the worker, and when completed create container
         else {
             createLoadingInfoBox();
             const worker = new Worker('./webWorkers/requestInfo.js');
             worker.postMessage(imdbID);
             worker.onmessage = function (event) {
-                if (event.data === "No info"){
+                if (event.data === "No info") {
                     closeLoadingInfoBox();
-                }else{
+                } else {
                     createInfoBox(event.data, imdbID, node);
                 }
-                    
+
             }
 
         }
