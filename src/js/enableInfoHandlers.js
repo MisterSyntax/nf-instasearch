@@ -11,6 +11,19 @@ const enableInfoHandlers = function (node) {
 
     const imdbID = node.querySelector('.title-container').id;
 
+    function createLoadingInfoBox() {
+        const div = document.createElement('div');
+        div.setAttribute('class', 'info-loading-message');
+        div.innerHTML = "Loading Info...";
+        node.appendChild(div);
+    }
+    function closeLoadingInfoBox(){
+        const loadingContainer = node.querySelector('.info-loading-message');
+        if (loadingContainer) {
+            loadingContainer.parentNode.removeChild(loadingContainer);
+        }
+    }
+
     function createOpenInfoBox() {
         const titleInfoContainer = node.querySelector('.title-info-container');
         //TODO: close any open info containers
@@ -35,14 +48,16 @@ const enableInfoHandlers = function (node) {
         }
         //if we're creating a new container add a loading message, launch the worker, and when completed create container
         else {
-            const div = document.createElement('div');
-            div.setAttribute('class', 'info-loading-message');
-            div.innerHTML = "Loading Info...";
-            node.appendChild(div);
+            createLoadingInfoBox();
             const worker = new Worker('./webWorkers/requestInfo.js');
             worker.postMessage(imdbID);
             worker.onmessage = function (event) {
-                createInfoBox(event.data, imdbID, node);
+                if (event.data === "No info"){
+                    closeLoadingInfoBox();
+                }else{
+                    createInfoBox(event.data, imdbID, node);
+                }
+                    
             }
 
         }
