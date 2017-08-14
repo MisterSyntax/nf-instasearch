@@ -7,14 +7,15 @@
  */
 
 onmessage = function (e) {
-    if (e.data) {
-        const url = `http://www.omdbapi.com/?apikey=aba065d3&i=${e.data}`;
-        const xmlHttp = new XMLHttpRequest();
-        xmlHttp.open('GET', url, false);
-        xmlHttp.send();
-        const results = JSON.parse(xmlHttp.responseText);
-        if (results.Response === 'True') {
-            let htmlOutput = `
+    try {
+        if (e.data) {
+            const url = `http://www.omdbapi.com/?apikey=aba065d3&i=${e.data}`;
+            const xmlHttp = new XMLHttpRequest();
+            xmlHttp.open('GET', url, false);
+            xmlHttp.send();
+            const results = JSON.parse(xmlHttp.responseText);
+            if (results.Response === 'True') {
+                let htmlOutput = `
                 <div class="title-info">
                     <div class="close-info">
                     <svg viewbox="0 0 40 40">
@@ -25,14 +26,19 @@ onmessage = function (e) {
                     <div class="year-director"><span class="year">(${results.Year})</span> <span class="director">${results.Director}</span></div>
                     <div class="-ratings">
                         <h4>Ratings:</h4>${
-                            results.Ratings.length ?
-                                results.Ratings.map(curr=>`<div>${curr.Source}: ${curr.Value}</div>`).join('')
-                                : 'No Ratings Yet'
-                        }
+                    results.Ratings.length ?
+                        results.Ratings.map(curr => `<div>${curr.Source}: ${curr.Value}</div>`).join('')
+                        : 'No Ratings Yet'
+                    }
                     </div>
                 </div>`;
-            postMessage(htmlOutput);
-        };
+                postMessage(htmlOutput);
+            };
+        }
+    }
+    catch(err){
+        postMessage("No info");
+        console.error(err);
     }
     close();
 };
