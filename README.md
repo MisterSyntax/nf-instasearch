@@ -1,13 +1,17 @@
-A bare bones starter for TDD with Mocha and Asser
+A movie instasearch 
 ---
-
+```
+Type in your search in the search bar and see your results below.
+Hovering over a result for desktop users will expand an info box
+For small screens, clicking will open an info screen with info about the movie
+```
 
 
 Instructions
 ---
 ```
-1. Create tests files in in your test folder with naming convention *-spec.js
-2. Add tests for modules to be built
-3. Build modules
-4. npm test to see if your modules are working 
+1. npm i
+2. npm start
+3. head to http://localhost:3000/
+4. enjoy!
 ```
