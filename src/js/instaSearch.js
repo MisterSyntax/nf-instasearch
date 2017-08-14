@@ -37,7 +37,7 @@ const instaSearch = function () {
 
         //delay launching web worker to minimize requests until user is done typing
         setTimeout(function () {
-            if (e.target.value === "") {
+            if (e.target.value === '') {
                 closeLoadingContainer();
             }
             //launch a web worker to get the appropriate titles and set this worker to be the current worker
@@ -46,7 +46,7 @@ const instaSearch = function () {
             worker.postMessage(e.target.value);
 
             worker.onmessage = function (event) {
-                if (event.data === "No results") {
+                if (event.data === 'No results') {
                     closeLoadingContainer();
                 }
                 else {

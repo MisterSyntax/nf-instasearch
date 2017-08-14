@@ -28,12 +28,12 @@ onmessage = function (e) {
                 postMessage(htmlOutput);
             }
             else {
-                postMessage("No results");
+                postMessage('No results');
             }
         }
     } catch (err) {
         console.error(err);
-        postMessage("No results");
+        postMessage('No results');
     }
 
     close();

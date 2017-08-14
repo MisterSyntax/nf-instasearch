@@ -14,7 +14,7 @@ const enableInfoHandlers = function (node) {
     function createLoadingInfoBox() {
         const div = document.createElement('div');
         div.setAttribute('class', 'info-loading-message');
-        div.innerHTML = "Loading Info...";
+        div.innerHTML = 'Loading Info...';
         node.appendChild(div);
     }
     function closeLoadingInfoBox() {
@@ -54,7 +54,7 @@ const enableInfoHandlers = function (node) {
             const worker = new Worker('./webWorkers/requestInfo.js');
             worker.postMessage(imdbID);
             worker.onmessage = function (event) {
-                if (event.data === "No info") {
+                if (event.data === 'No info') {
                     closeLoadingInfoBox();
                 } else {
                     createInfoBox(event.data, imdbID, node);
