@@ -4,23 +4,30 @@ import enableInfoHandlers from './enableInfoHandlers';
  * - Also calls enableInfo on each result to 
  * @var: {object} resultData - An object that has a key data which contains the data for the last
  */
-const createSearchResults = function(resultData){
-    const suggestionBox = document.getElementById('search-suggestions');
-    suggestionBox.innerHTML = '';
-    resultData.data.forEach(result => {
-        let div = document.createElement('div');
-        div.setAttribute('class', 'result-container')
-        div.innerHTML = result;
-        suggestionBox.appendChild(div);
-        enableInfoHandlers(div);
-    });
-    //clear the loadingBox
-    //TODO: refactor to having this return a promise...
-    const loadingBox = document.querySelector('.loading-results');
-    if(loadingBox){
-        loadingBox.parentNode.removeChild(loadingBox);
-    }
+const createSearchResults = function (resultData) {
     
+    function clearLoadingBox() {
+        const loadingBox = document.querySelector('.loading-results');
+        if (loadingBox) {
+            loadingBox.parentNode.removeChild(loadingBox);
+        }
+    }
+
+    function populateSuggestions() {
+        const suggestionBox = document.getElementById('search-suggestions');
+        suggestionBox.innerHTML = '';
+        resultData.data.forEach(result => {
+            let div = document.createElement('div');
+            div.setAttribute('class', 'result-container')
+            div.innerHTML = result;
+            suggestionBox.appendChild(div);
+            enableInfoHandlers(div);
+        });
+    }
+
+    populateSuggestions();
+    clearLoadingBox();
+
 }
 
 export default createSearchResults;
