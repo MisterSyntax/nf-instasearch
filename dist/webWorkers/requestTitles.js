@@ -7,26 +7,35 @@
  */
 
 onmessage = function (e) {
-    if (e.data) {
-        const url = `http://www.omdbapi.com/?apikey=aba065d3&s=${e.data}`;
-        const xmlHttp = new XMLHttpRequest();
-        xmlHttp.open('GET', url, false);
-        xmlHttp.send();
-        const results = JSON.parse(xmlHttp.responseText);
-        if (results.Response === 'True') {
-            let htmlOutput = results.Search.map(result => {
+    try {
+        if (e.data) {
+            const url = `http://www.omdbapi.com/?apikey=aba065d3&s=${e.data}`;
+            const xmlHttp = new XMLHttpRequest();
+            xmlHttp.open('GET', url, false);
+            xmlHttp.send();
+            const results = JSON.parse(xmlHttp.responseText);
+            if (results.Response === 'True') {
+                let htmlOutput = results.Search.map(result => {
 
-                let program = `<div class='title-container' id='${result.imdbID}'>
+                    let program = `<div class='title-container' id='${result.imdbID}'>
                     ${result.Poster !== 'N/A' ? `<img class='poster' src='${result.Poster}' alt='${result.Title} Poster'>` : `<div class='no-poster'>No poster available</div>`}
                     <p class='title'>${result.Title}</p>
                 </div>`
 
-                return program;
-            });
+                    return program;
+                });
 
-            postMessage(htmlOutput);
+                postMessage(htmlOutput);
+            }
+            else {
+                postMessage("No results");
+            }
         }
+    } catch (err) {
+        console.error(err);
+        postMessage("No results");
     }
+
     close();
 };
 

@@ -10,15 +10,37 @@
     position: relative;
 }
 
-.loading-results{
+.loading-container{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 3;
+}
+
+.loading-results{
+    width: 100%;
+    height: 100%;
     background-color: var(--primary);
     z-index: 1;
     opacity: .4;
+}
+
+.result-loading-message {
+    position: fixed;
+    top: 150px;
+    left: calc(50%-50px);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+
+    background-color: var(--almost-white);
+    padding: 1em;
+    width: 100px;
+    border-radius: 10px;
 }
 
 .info-loading-message {
@@ -38,6 +60,8 @@
     width: 100px;
     border-radius: 10px;
 }
+
+
 
 .result-container{
     min-height: 280px;
